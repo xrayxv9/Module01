@@ -4,7 +4,7 @@
 class HumanB
 {
 	public:
-		HumanB( std::string type );
+		HumanB( std::string name );
 		~HumanB( void );
 		void attack( void );
 		void setWeapon(Weapon &wep);
