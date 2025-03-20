@@ -11,8 +11,7 @@ RESET = \033[0m
 
 SRC = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp 
 
-OBJS_SRC = $(SRC:.c=.o)
-
+OBJS_SRC = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
@@ -20,15 +19,15 @@ $(NAME): $(OBJS_SRC)
 	@echo ">>> $(BLUE)COMPILATION$(RESET)<<<"
 	@$(CC) $(FLAGS)  $(OBJS_SRC) -o $@
 
-$(OBJ_PATH)%.o: $(SRC)%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	@echo ">>> $(RED)SUPPRESSION DES FICHIERS .o $(RESET)<<<"
 	@rm -rf $(OBJS_SRC)
 	@echo "$(RESET)"
 
-fclean:
+fclean: clean
 	@echo ">>> $(RED)SUPPRESSION DE L'EXECUTABLE $(RESET)<<<"
 	@rm -f $(NAME)
 
