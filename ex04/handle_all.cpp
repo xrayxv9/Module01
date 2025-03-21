@@ -1,7 +1,7 @@
 #include "file.hpp"
 #include <fstream>
 
-std::string reading(char **av)
+void reading(char **av)
 {
 	std::fstream fs;
 	std::string str;
@@ -11,24 +11,24 @@ std::string reading(char **av)
 
 	end += conc;
 	fs.open(av[1], std::fstream::in);
-	std::ofstream outfile(end.c_str());
-	if (!fs.is_open() || !outfile.is_open())
+	if (!fs.is_open())
 	{
 		std::cout << "One of the file couldn't opened" << std::endl;
-		if (!fs.is_open())
-			fs.close();
-		if (!outfile.is_open())
-			outfile.close();
-		return (NULL);
+		return ;
 	}
-	while (1)
+	std::ofstream outfile(end.c_str());
+	if (!outfile.is_open())
 	{
-		std::getline(fs, tmp);
+		fs.close();
+		return ;
+	}
+	while (std::getline(fs, tmp, '\0'))
+	{
 		if (tmp.empty())
 		{
 			fs.close();
 			outfile.close();
-			return (str);
+			return ;
 		}
 		str = modify(tmp, av[2], av[3]);
 		if (!str.empty())

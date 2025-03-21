@@ -2,12 +2,12 @@
 
 Harl::Harl( void )
 {
-	std::cout << "An outer wilds fan has emerged from his cave" << std::endl;
+	return ;
 }
 
 Harl::~Harl( void )
 {
-	std::cout << "The outer wilds fan went back to his cave" << std::endl;
+	return ;
 }
 
 void Harl::debug( void )
