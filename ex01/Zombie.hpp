@@ -7,7 +7,7 @@ class Zombie
 		Zombie( void );
 		~Zombie( void );
 		
-		void Announce ( void );
+		void announce ( void );
 		Zombie *zombieHorde(int n, std::string name);	
 
 	private :

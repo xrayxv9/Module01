@@ -10,7 +10,7 @@ Zombie::~Zombie( void )
 	return ;
 }
 
-void Zombie::Announce( void )
+void Zombie::announce( void )
 {
 	std::cout << getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

@@ -9,7 +9,7 @@ int main ( void )
 	for (int i = 0; i < 4; i++)
 	{
 		std::cout << i << ". ";
-		z[i].Announce();
+		z[i].announce();
 	}
 	delete [] z;
 }

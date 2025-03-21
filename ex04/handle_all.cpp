@@ -1,9 +1,9 @@
 #include "file.hpp"
+#include <fstream>
 
 std::string reading(char **av)
 {
 	std::fstream fs;
-	std::fstream fsReplace;
 	std::string str;
 	std::string tmp;
 	std::string end(av[1]);
@@ -11,14 +11,14 @@ std::string reading(char **av)
 
 	end += conc;
 	fs.open(av[1], std::fstream::in);
-	std::
-	if (!fs.is_open() || !fsReplace.is_open())
+	std::ofstream outfile(end.c_str());
+	if (!fs.is_open() || !outfile.is_open())
 	{
 		std::cout << "One of the file couldn't opened" << std::endl;
 		if (!fs.is_open())
 			fs.close();
-		if (!fsReplace.is_open())
-			fsReplace.close();
+		if (!outfile.is_open())
+			outfile.close();
 		return (NULL);
 	}
 	while (1)
@@ -27,15 +27,12 @@ std::string reading(char **av)
 		if (tmp.empty())
 		{
 			fs.close();
-			fsReplace.close();
+			outfile.close();
 			return (str);
 		}
 		str = modify(tmp, av[2], av[3]);
 		if (!str.empty())
-		{
-			std::cout << "it should work" << std::endl;
-			fsReplace << str << std::endl;
-		}
+			outfile << str << std::endl;
 	}
 }
 
@@ -51,7 +48,7 @@ std::string modify( std::string file, std::string search, std::string toReplace)
 		tmp = file.substr(i, len);
 		if (tmp == search)
 		{
-			i += len;
+			i += len - 1;
 			final += toReplace;
 		}
 		else
