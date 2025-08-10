@@ -14,7 +14,10 @@ HumanB::~HumanB( void )
 
 void HumanB::attack( void )
 {
-	std::cout << this->getName() << " attacks with their " << this->wep->getType() << std::endl;
+	if (this->wep != NULL)
+		std::cout << this->getName() << " attacks with their " << this->wep->getType() << std::endl;
+	else
+		std::cout << this->getName() << " attacks with their bare hands" << std::endl;
 }
 
 // set
